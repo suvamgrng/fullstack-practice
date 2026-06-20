@@ -1,0 +1,10 @@
+# Mac system files
+.DS_Store
+.DS_Store?
+._*
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
