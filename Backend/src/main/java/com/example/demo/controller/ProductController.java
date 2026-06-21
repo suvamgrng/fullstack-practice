@@ -64,4 +64,14 @@ public class ProductController {
 
         return updated != null ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/product/{productId}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable int productId) {
+        boolean deleted = service.deleteProduct(productId);
+
+        if (deleted) {
+            return ResponseEntity.noContent().build();
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
 }

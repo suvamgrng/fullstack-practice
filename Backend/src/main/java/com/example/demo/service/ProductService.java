@@ -50,4 +50,12 @@ public class ProductService {
         product.setImageDate(imageFile.getBytes());
         return repo.save(product);
     }
+
+    public boolean deleteProduct(int productId) {
+        if (!repo.existsById(productId)) { // if product id dont exist
+            return false;
+        }
+        repo.deleteById(productId);
+        return true;
+    }
 }
