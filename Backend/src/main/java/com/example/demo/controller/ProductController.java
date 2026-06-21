@@ -53,8 +53,15 @@ public class ProductController {
     public ResponseEntity<byte[]> getProductImageById(@PathVariable int productId) {
         Product product = service.getProduct(productId);
         byte[] imageFile = product.getImageDate();
-
         return ResponseEntity.ok(imageFile);
+    }
 
+    @PutMapping("/product/{productId}")
+    public ResponseEntity<Product> updateProduct(@PathVariable int productId,
+                                                 @RequestPart("product") Product product,
+                                                 @RequestPart("imageFile") MultipartFile imageFile) throws IOException {
+        Product updated = service.updateProduct(productId, product, imageFile);
+
+        return updated != null ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();
     }
 }
