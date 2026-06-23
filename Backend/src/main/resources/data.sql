@@ -1,5 +1,5 @@
-INSERT INTO product (name, desc, price, category, release_date, available, quantity)
-VALUES ('Laptop Pro 15', 'High performance laptop with 16GB RAM', 1299.99, 'Electronics', '2024-01-15', true, 50);
+INSERT INTO product (name, desc, brand,  price, category, release_date, available, quantity)
+VALUES ('Laptop Pro 15', 'High performance laptop with 16GB RAM','Samsung' , 1299.99, 'Electronics', '2024-01-15', true, 50);
 
 INSERT INTO product (name, desc, price, category, release_date, available, quantity)
 VALUES ('Wireless Headphones', 'Noise cancelling Bluetooth headphones', 199.99, 'Electronics', '2024-03-10', true, 120);

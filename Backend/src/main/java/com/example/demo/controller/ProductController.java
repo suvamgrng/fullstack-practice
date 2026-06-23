@@ -24,11 +24,11 @@ public class ProductController {
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts() {
-         return  ResponseEntity.ok(service.getAllProducts());
+        return ResponseEntity.ok(service.getAllProducts());
     }
 
     @PostMapping("/products")
-    public List<Product>  addProducts(@RequestBody List<Product> product) {
+    public List<Product> addProducts(@RequestBody List<Product> product) {
         service.addProducts(product);
         return product;
     }
@@ -40,7 +40,7 @@ public class ProductController {
 
     @PostMapping("/product")
     public ResponseEntity<?> addProduct(@RequestPart Product product,
-                              @RequestPart MultipartFile imageFile) throws IOException {
+                                        @RequestPart MultipartFile imageFile) throws IOException {
         Product product1 = service.addProduct(product, imageFile);
 
         if (product1 != null) {
@@ -73,5 +73,15 @@ public class ProductController {
             return ResponseEntity.noContent().build();
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("products/search")
+    public ResponseEntity<List<Product>> searchProductById(@RequestParam String keyword) {
+        System.out.println("Searching with " + keyword);
+        List<Product> products = service.searchProducts(keyword);
+        if (products.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(products);
     }
 }
